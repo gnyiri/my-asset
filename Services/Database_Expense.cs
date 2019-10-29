@@ -8,12 +8,12 @@ namespace MyAsset.Services
 {
     public partial class Database
     {
-        public bool InsertAsset(Model.Asset asset)
+        public bool InsertExpense(Model.Expense expense)
         {
             try
             {
-                asset.CreationTime = asset.UpdateTime = DateTime.Now;
-                Instance.Connection.Insert(asset);
+                expense.CreationTime = DateTime.Now;
+                Instance.Connection.Insert(expense);
             }
             catch (SQLiteException ex)
             {
@@ -24,11 +24,11 @@ namespace MyAsset.Services
             return true;
         }
 
-        public List<Model.Asset> GetAssets()
+        public List<Model.Expense> GetExpensesByAssetId(int ID)
         {
             try
             {
-                return Instance.Connection.Table<Model.Asset>().ToList();
+                return Instance.Connection.Query<Model.Expense>("SELECT * FROM Expense WHERE AssetId = ?", ID);
 
             }
             catch (SQLiteException ex)
@@ -38,15 +38,15 @@ namespace MyAsset.Services
             }
         }
 
-        public bool UpdateAsset(Model.Asset asset)
+        public bool UpdateExpense(Model.Expense expense)
         {
             try
             {
-                asset.UpdateTime = DateTime.Now;
+                expense.UpdateTime = DateTime.Now;
 
-                Instance.Connection.Query<Model.Asset>(
-                    "UPDATE Asset set Name=?, UpdateTime=?, StartTime=?, Endtime=?, EstimatedValue=?, AssetTypeId=?, AssetStatusId=?",
-                    asset.Name, asset.UpdateTime, asset.StartTime, asset.EndTime, asset.EstimatedValue, asset.AssetTypeId, asset.AssetStatusId);
+                Instance.Connection.Query<Model.Expense>(
+                    "UPDATE Expense set Name=?, Value=?, Time=?, UpdateTime=?, ExpenseSourceID=?, ExpenseStateId=?, AssetId=?",
+                    expense.Name, expense.Value, expense.Time, expense.UpdateTime, expense.ExpenseSourceId, expense.ExpenseStateId, expense.AssetId);
 
                 return true;
             }

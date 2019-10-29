@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -6,32 +6,71 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="4dp"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="5dp">
-        <LinearLayout
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="8dp">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="16dp">
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/asset_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
-                android:text="Caption"
-                android:id="@+id/assetNameView"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:textSize="30sp"
+                android:text="Asset Name"/>
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/asset_type"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
-                android:text="Caption"
-                android:id="@+id/assetTypeView"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:text="Asset Type"
+                android:textStyle="bold"
+                android:layout_marginTop="14dp" />
+            <View
+                android:id="@+id/asset_divider_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/asset_name"/>
+            <TextView
+                android:id="@+id/asset_current_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/asset_divider_1"
+                android:layout_alignParentLeft="true"
+                android:text="Current Value"
+                android:textColor="#448aff"/>
+            <TextView
+                android:id="@+id/asset_estimated_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/asset_divider_1"
+                android:layout_alignParentRight="true"
+                android:text="Estimated Value"
+                android:textColor="#ff1744"/>
+            <View
+                android:id="@+id/asset_divider_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/asset_estimated_value"
+                android:background="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/asset_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/asset_divider_2"
+                android:textStyle="italic"
+                android:text="Start Time"/>
+            <TextView
+                android:id="@+id/asset_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/asset_divider_2"
+                android:layout_alignParentRight="true"
+                android:textStyle="italic"
+                android:text="End Time"/>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

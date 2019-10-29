@@ -9,6 +9,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
+using SQLite;
 
 namespace MyAsset
 {
@@ -17,16 +18,13 @@ namespace MyAsset
     {
         RecyclerView mAssetView;
         RecyclerView.LayoutManager mLayoutManager;
-        View.AssetAdapter mAssetAdapter;
+        Views.AssetAdapter mAssetAdapter;
 
-        Services.Database mDatabase;
+        SQLiteConnection mDatabase;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            mDatabase = new Services.Database();
-            mDatabase.Create();
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
@@ -36,8 +34,8 @@ namespace MyAsset
 
             mLayoutManager = new LinearLayoutManager(this);
             mAssetView.SetLayoutManager(mLayoutManager);
-            mAssetAdapter = new View.AssetAdapter(mDatabase);
-
+            mAssetAdapter = new Views.AssetAdapter(Services.Database.Instance);
+            mAssetView.SetAdapter(mAssetAdapter);
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);

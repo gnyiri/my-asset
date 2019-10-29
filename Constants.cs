@@ -15,5 +15,6 @@ namespace MyAsset
     public static class Constants
     {
         public const string DatabaseFileName = "my_asset.db3";
+        public const string DateTimeFormat = "yy-MM-dd";
     }
 }
